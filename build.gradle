@@ -6,11 +6,7 @@ apply plugin: 'jetty'
 
 sourceCompatibility = 1.6
 version = '1.0-SNAPSHOT'
-jar {
-    manifest {
-        attributes 'Title': 'basic-auth-rest-api', 'Version': version
-    }
-}
+
 configurations {
 	runtimeOnly
 }
@@ -46,8 +42,9 @@ mainClassName='config.RestApiService'
 
 jar {
 	manifest {
-		attributes 'Main-Class': mainClassName
+		attributes  'Title': 'dropwizard-rest-api', 'Version': version,'Main-Class': mainClassName
 	}
+	archiveName 'dropwizard-rest-api'
 	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 	dependsOn configurations.runtime
 	from {
@@ -56,7 +53,15 @@ jar {
 }
 
 run {
-	args 'server', 'dev-config.yml'
+	args 'server', 'heroku-config.yml'
+}
+
+
+task copyJar(dependsOn: 'jar') << {
+  copy {
+    from "$buildDir/libs"
+    into "$buildDir/"
+  }
 }
 
 task copyToLib << {
@@ -71,4 +76,4 @@ task copyToLib << {
   }
 }
 
-task stage(dependsOn: ['clean', 'jar'])
+task stage(dependsOn: ['clean', 'copyJar'])
