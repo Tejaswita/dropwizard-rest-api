@@ -1,1 +1,1 @@
-web: java -jar $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT build/dropwizard-rest-api.jar server heroku-config.yml 
+web: java -cp config.RestApiService.main $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT server heroku-config.yml 
