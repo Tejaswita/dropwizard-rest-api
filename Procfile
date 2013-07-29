@@ -1,1 +1,1 @@
-web: java -jar $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT ./build/libs/dropwizard-rest-api-1.0-SNAPSHOT-fat.jar server heroku-config.yml
+web: java -jar $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT build/libs/jetty-runner.jar heroku-config.yml build/libs/dropwizard-rest-api-1.0-SNAPSHOT.war 
