@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar --port $PORT target/dropwizard-rest-api.jar
+web: java $JAVA_OPTS -jar --port $PORT dropwizard-rest-api/build/libs/dropwizard-rest-api.jar
