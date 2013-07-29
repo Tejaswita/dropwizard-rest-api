@@ -45,11 +45,15 @@ jar {
 	manifest {
 		attributes 'Main-Class': mainClassName
 	}
+	dependsOn configurations.runtime
+	from {
+		configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
+	}
 	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 }
 
-//run {
-//	args 'server', 'dev-config.yml'
-//}
+run {
+	args 'server', 'dev-config.yml'
+}
 
 task stage(dependsOn: ['clean', 'jar'])
