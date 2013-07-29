@@ -45,11 +45,11 @@ jar {
 	manifest {
 		attributes 'Main-Class': mainClassName
 	}
+	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 	dependsOn configurations.runtime
 	from {
 		configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
 	}
-	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 }
 
 run {
