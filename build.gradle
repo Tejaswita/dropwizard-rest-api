@@ -52,4 +52,4 @@ jar {
 //	args 'server', 'dev-config.yml'
 //}
 
-task stage(dependsOn: ['clean', 'installApp'])
+task stage(dependsOn: ['clean', 'jar'])
