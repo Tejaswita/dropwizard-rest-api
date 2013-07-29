@@ -2,7 +2,7 @@ database:
   driverClass: org.postgresql.Driver
   #user: HEROKU_POSTGRESQL_USERNAME
   #password: HEROKU_POSTGRESQL_PASSWORD
-  url: jdbc:DATABASE_URL
+  url: jdbc: DATABASE_URL
   validationQuery: "/* My Example Service Service Health Check */ SELECT 1"
 
   # any properties specific to your JDBC driver:

@@ -45,11 +45,11 @@ jar {
 	manifest {
 		attributes 'Main-Class': mainClassName
 	}
-	 exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 }
 
-run {
-	args 'server', 'basic-rest-api.yml'
-}
+//run {
+//	args 'server', 'dev-config.yml'
+//}
 
 task stage(dependsOn: ['clean', 'installApp'])
