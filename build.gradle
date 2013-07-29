@@ -1,0 +1,55 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'jetty'
+
+
+sourceCompatibility = 1.6
+version = '1.0-SNAPSHOT'
+jar {
+    manifest {
+        attributes 'Title': 'basic-auth-rest-api', 'Version': version
+    }
+}
+
+repositories {
+    mavenCentral()   
+}
+
+dependencies {
+    compile 'postgresql:postgresql:9.0-801.jdbc4'
+    compile "commons-collections:commons-collections:3.2"
+    compile "commons-lang:commons-lang:2.+"
+    compile "com.yammer.dropwizard:dropwizard-core:0.6.2"
+    compile "com.yammer.dropwizard:dropwizard-auth:0.6.2"  
+    compile "com.yammer.dropwizard:dropwizard-hibernate:0.6.2"    
+    compile "com.yammer.dropwizard:dropwizard-testing:0.6.2"    
+    compile module('org.eclipse.jetty:jetty-server:8.1.10.v20130312') {
+    	dependencies( 
+    	"org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016@jar",
+        "org.eclipse.jetty:jetty-continuation:8.1.2.v20120308",
+        "org.eclipse.jetty:jetty-http:8.1.2.v20120308")
+    }
+    testCompile "junit:junit:4.+"
+    testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile "org.hamcrest:hamcrest-core:1.2"
+    testCompile "org.hamcrest:hamcrest-library:1.2"
+    testCompile "com.sun.jersey:jersey-client:1.17.1"
+    
+}
+
+mainClassName='config.RestApiService'
+
+jar {
+	classifier 'fat'
+	manifest {
+		attributes 'Main-Class': mainClassName
+	}
+	 exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+}
+
+run {
+	args 'server', 'basic-rest-api.yml'
+}
+
+task stage(dependsOn: ['clean', 'installApp'])
