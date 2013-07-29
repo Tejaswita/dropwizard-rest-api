@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -cp target/classes:build/classes/main/* config.RestApiService server heroku-config.yml
+web: java $JAVA_OPTS -jar --port $PORT target/dropwizard-rest-api.jar
