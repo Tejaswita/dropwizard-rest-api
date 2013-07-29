@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -cp build/classes:build/classes/* config.RestApiService.class server heroku-config.yml
+web: java $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -cp build/classes:build/classes/* config.RestApiService server heroku-config.yml
