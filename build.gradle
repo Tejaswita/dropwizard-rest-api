@@ -44,17 +44,16 @@ dependencies {
 
 mainClassName='config.RestApiService'
 
-//jar {
-//	classifier 'fat'
-//	manifest {
-//		attributes 'Main-Class': mainClassName
-//	}
-//	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
-//	dependsOn configurations.runtime
-//	from {
-//		configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
-//	}
-//}
+jar {
+	manifest {
+		attributes 'Main-Class': mainClassName
+	}
+	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+	dependsOn configurations.runtime
+	from {
+		configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
+	}
+}
 
 run {
 	args 'server', 'dev-config.yml'
@@ -72,4 +71,4 @@ task copyToLib << {
   }
 }
 
-task stage(dependsOn: ['clean', 'war', 'copyToLib'])
+task stage(dependsOn: ['clean', 'jar'])
