@@ -3,6 +3,7 @@ database:
   user: epkgkjzertcwyr
   password: Hh3VrjQ06IbOrN9ubR_Vfu8mwM
   url: DATABASE_URL
+  dialect: org.hibernate.dialect.PostgreSQLDialect
   validationQuery: "/* My Example Service Service Health Check */ SELECT 1"
 
   # any properties specific to your JDBC driver:
