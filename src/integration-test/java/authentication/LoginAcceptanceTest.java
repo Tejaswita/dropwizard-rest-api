@@ -25,12 +25,6 @@ import domain.dto.AuthenticatedUser;
 @RunWith(MockitoJUnitRunner.class)
 public class LoginAcceptanceTest extends ResourceTest {
 
-	// @Rule
-	// public DropwizardServiceRule<BasicRestApiConfig> server = new
-	// DropwizardServiceRule<BasicRestApiConfig>(
-	// RestApiService.class, this.getClass()
-	// .getResource("test-rest-api.yml").getPath());
-
 	@Mock
 	private AuthenticationService authenticationService;
 	private Form form;

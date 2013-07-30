@@ -3,12 +3,16 @@ apply plugin: 'application'
 apply plugin: 'eclipse'
 apply plugin: 'jetty'
 
-
 sourceCompatibility = 1.6
 version = '1.0-SNAPSHOT'
 
 configurations {
-	runtimeOnly
+    integrationTestCompile {
+        extendsFrom testCompile
+    }
+    functionalTestRuntime {
+        extendsFrom integrationTestCompile, testRuntime
+    }
 }
 
 repositories {
@@ -34,8 +38,6 @@ dependencies {
     testCompile "org.hamcrest:hamcrest-core:1.2"
     testCompile "org.hamcrest:hamcrest-library:1.2"
     testCompile "com.sun.jersey:jersey-client:1.17.1"
-    runtimeOnly "org.mortbay.jetty:jetty-runner:8.1.1.v20120215"
-    runtimeOnly "com.newrelic.agent.java:newrelic-agent:2.18.0"
 }
 
 mainClassName='config.RestApiService'
@@ -56,7 +58,6 @@ run {
 	args 'server', 'dev-config.yml'
 }
 
-
 task copyJar(dependsOn: 'jar') << {
   copy {
     from "$buildDir/libs"
@@ -76,4 +77,17 @@ task copyToLib << {
   }
 }
 
-task stage(dependsOn: ['clean', 'jar'])
+sourceSets{
+	integrationTest {
+		java.srcDir file('src/integration-test/java')
+		compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.integrationTestCompile
+        runtimeClasspath = output + compileClasspath + configurations.integrationTestRuntime
+	}
+}
+
+task integrationTest(type:Test) {
+	testClassesDir = sourceSets.integrationTest.output.classesDir
+	classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+task stage(dependsOn: ['clean','integrationTest','jar'])
