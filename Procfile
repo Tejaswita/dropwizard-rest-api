@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar dropwizard-rest-api/build/libs/dropwizard-rest-api.jar server dropwizard-rest-api/heroku-config.yml
+web: java $JAVA_OPTS -jar build/libs/dropwizard-rest-api.jar server heroku-config.yml
