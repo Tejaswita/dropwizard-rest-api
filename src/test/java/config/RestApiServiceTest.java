@@ -4,8 +4,9 @@ import healthcheck.LoginHealthCheck;
 
 import static org.mockito.BDDMockito.given;
 
-import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.isA;
 
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import org.hibernate.SessionFactory;
@@ -52,8 +53,8 @@ public class RestApiServiceTest {
 			Assert.fail("Exception not expected: " + e.getMessage());
 		}
 
-		verify(environment).addResource(any(LoginResource.class));
-		verify(environment).addResource(any(NameResource.class));
+		verify(environment, times(1)).addResource(isA(LoginResource.class));
+		verify(environment, times(1)).addResource(isA(NameResource.class));
 	}
 
 	@Test
@@ -65,6 +66,6 @@ public class RestApiServiceTest {
 			Assert.fail("Exception not expected: " + e.getMessage());
 		}
 
-		verify(environment).addHealthCheck(any(LoginHealthCheck.class));
+		verify(environment).addHealthCheck(isA(LoginHealthCheck.class));
 	}
 }

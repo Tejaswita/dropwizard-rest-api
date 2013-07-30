@@ -2,6 +2,7 @@ package config;
 
 import healthcheck.LoginHealthCheck;
 import resource.LoginResource;
+import resource.NameResource;
 import service.AuthenticationService;
 
 import com.yammer.dropwizard.Service;
@@ -43,6 +44,7 @@ public class RestApiService extends Service<BasicRestApiConfig> {
 				identityDao);
 		LoginResource loginResource = new LoginResource(authService);
 		environment.addResource(loginResource);
+		environment.addResource(new NameResource());
 		environment.addHealthCheck(new LoginHealthCheck(loginResource));
 		/*
 		 * environment.addHealthCheck(new DBHealthCheck(configuration
