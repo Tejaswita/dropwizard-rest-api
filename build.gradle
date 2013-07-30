@@ -53,7 +53,7 @@ jar {
 }
 
 run {
-	args 'server', 'heroku-config.yml'
+	args 'server', 'dev-config.yml'
 }
 
 
