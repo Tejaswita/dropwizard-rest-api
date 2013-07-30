@@ -41,6 +41,7 @@ dependencies {
 mainClassName='config.RestApiService'
 
 jar {
+	archiveName : 'dropwizard-rest-api.jar'
 	manifest {
 		attributes  'Title': 'dropwizard-rest-api', 'Version': version,'Main-Class': mainClassName
 	}
