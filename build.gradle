@@ -76,4 +76,4 @@ task copyToLib << {
   }
 }
 
-task stage(dependsOn: ['clean', 'copyJar'])
+task stage(dependsOn: ['clean', 'build'])
