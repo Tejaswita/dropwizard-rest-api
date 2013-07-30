@@ -39,7 +39,6 @@ public class Identity {
 	public AuthenticatedUser toAuthenticatedUser() {
 		AuthenticatedUser user = new AuthenticatedUser(this.username, this.role);
 		return user;
-
 	}
 
 	public String getPassword() {

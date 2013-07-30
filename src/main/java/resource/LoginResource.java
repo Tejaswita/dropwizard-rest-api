@@ -42,7 +42,7 @@ public class LoginResource {
 		try {
 			return authService.authenticate(username, password);
 		} catch (InvalidCredentialsException e) {
-			Response response = Response.status(Response.Status.UNAUTHORIZED)
+			Response response = Response.status(Response.Status.BAD_REQUEST)
 					.build();
 			throw new WebApplicationException(response);
 		}
