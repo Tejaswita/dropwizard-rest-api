@@ -17,7 +17,7 @@ public class NameResource {
 	@GET
 	@Path("/{name}")
 	@Consumes(MediaType.WILDCARD)
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.WILDCARD)
 	public String display(@PathParam("name") String name) {
 		if (StringUtils.isBlank(name)) {
 			Response response = Response.status(Response.Status.BAD_REQUEST)
