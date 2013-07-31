@@ -14,7 +14,9 @@ configurations {
         extendsFrom integrationTestCompile, testRuntime
     }
 }
+
 apply plugin: 'fatjar'
+
 buildscript {
 	repositories {
 	    mavenCentral()   
@@ -75,6 +77,10 @@ sourceSets{
 task integrationTest(type:Test, dependsOn:test) {
 	testClassesDir = sourceSets.integrationTest.output.classesDir
 	classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.4'
 }
 
 task stage(dependsOn: ['clean','integrationTest','fatJar'])
