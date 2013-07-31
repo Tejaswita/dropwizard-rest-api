@@ -50,10 +50,10 @@ jar {
 		attributes  'Title': 'dropwizard-rest-api', 'Version': version,'Main-Class': mainClassName
 	}
 	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
-	//dependsOn configurations.runtime
-	//from {
-	//	configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
-	//}
+	dependsOn configurations.runtime
+	from {
+		configurations.runtime.collect {it.isDirectory()? it: zipTree(it)}
+	}
 }
 
 run {
@@ -87,7 +87,7 @@ sourceSets{
 	}
 }
 
-task integrationTest(type:Test) {
+task integrationTest(type:Test, dependsOn:test) {
 	testClassesDir = sourceSets.integrationTest.output.classesDir
 	classpath = sourceSets.integrationTest.runtimeClasspath
 }
