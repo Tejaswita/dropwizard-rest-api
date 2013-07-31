@@ -1,9 +1,12 @@
 package domain.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import domain.Role;
 
+@XmlRootElement
 public class AuthenticatedUser {
 
 	@JsonProperty

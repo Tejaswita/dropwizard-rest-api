@@ -27,7 +27,7 @@ public class DisplayNameAcceptanceTest extends ResourceTest {
 	public void shouldDisplayName() throws Exception {
 		// Given
 		String displayedName = client().resource("/display/testname")
-				.type(MediaType.TEXT_HTML).get(String.class);
+				.type(MediaType.TEXT_PLAIN).get(String.class);
 		// Then
 		assertThat(displayedName, is("testname"));
 	}

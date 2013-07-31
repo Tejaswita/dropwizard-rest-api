@@ -29,7 +29,7 @@ public class LoginResource {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED })
 	@UnitOfWork
 	public AuthenticatedUser login(
 			@FormParam(value = "username") String username,

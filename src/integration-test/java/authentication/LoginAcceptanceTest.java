@@ -57,4 +57,15 @@ public class LoginAcceptanceTest extends ResourceTest {
 		assertThat(authenticatedUser.getUsername(), is(username));
 		assertThat(authenticatedUser.getRole(), is(Role.EMPLOYEE));
 	}
+
+	@Test
+	public void shouldAuthenticateUserFromJsonInput() throws Exception {
+		// Given
+		AuthenticatedUser authenticatedUser = client().resource("/login")
+				.type(MediaType.APPLICATION_FORM_URLENCODED)
+				.post(AuthenticatedUser.class, form);
+		// Then
+		assertThat(authenticatedUser.getUsername(), is(username));
+		assertThat(authenticatedUser.getRole(), is(Role.EMPLOYEE));
+	}
 }

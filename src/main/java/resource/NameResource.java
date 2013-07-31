@@ -1,6 +1,5 @@
 package resource;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -16,8 +15,7 @@ public class NameResource {
 
 	@GET
 	@Path("/{name}")
-	@Consumes(MediaType.WILDCARD)
-	@Produces(MediaType.WILDCARD)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String display(@PathParam("name") String name) {
 		if (StringUtils.isBlank(name)) {
 			Response response = Response.status(Response.Status.BAD_REQUEST)

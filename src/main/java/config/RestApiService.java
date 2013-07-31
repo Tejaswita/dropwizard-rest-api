@@ -46,10 +46,6 @@ public class RestApiService extends Service<BasicRestApiConfig> {
 		environment.addResource(loginResource);
 		environment.addResource(new NameResource());
 		environment.addHealthCheck(new LoginHealthCheck(loginResource));
-		/*
-		 * environment.addHealthCheck(new DBHealthCheck(configuration
-		 * .getDatabaseConfiguration()));
-		 */
 	}
 
 }
