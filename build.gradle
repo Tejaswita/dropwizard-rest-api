@@ -38,7 +38,7 @@ dependencies {
     testCompile "org.hamcrest:hamcrest-core:1.2"
     testCompile "org.hamcrest:hamcrest-library:1.2"
     testCompile "com.sun.jersey:jersey-client:1.17.1"
-    runtime "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.1.4"
+    runtime "com.sun.jersey:jersey-bundle:1.17.1"
     
 }
 
