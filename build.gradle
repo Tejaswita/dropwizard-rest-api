@@ -60,6 +60,7 @@ fatJar {
 	manifest {
 		attributes 'Main-Class' : mainClassName 
 	}
+		exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 }
 
 run {
