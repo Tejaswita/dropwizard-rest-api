@@ -11,6 +11,7 @@ DEFAULT_JVM_OPTS=""
 JAVA_OPTS="$JAVA_OPTS -Xmx512m"
 APP_NAME="Gradle"
 APP_BASE_NAME=`basename "$0"`
+APP_HOME="."
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD="maximum"
