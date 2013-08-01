@@ -11,7 +11,6 @@ DEFAULT_JVM_OPTS=""
 
 APP_NAME="Gradle"
 APP_BASE_NAME=`basename "$0"`
-echo $APP_BASE_NAME
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD="maximum"
@@ -114,7 +113,6 @@ fi
 # For Cygwin, switch paths to Windows format before running java
 if $cygwin ; then
     APP_HOME=`cygpath --path --mixed "$APP_HOME"`
-    echo $APP_HOME
     CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
 
     # We build the pattern for arguments to be converted via cygpath
@@ -155,8 +153,6 @@ if $cygwin ; then
         (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
     esac
 fi
-
-
 
 # Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
 function splitJvmOpts() {
