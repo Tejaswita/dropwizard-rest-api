@@ -1,1 +1,1 @@
-web: ./build/install/webapp/bin/webapp
+web: java $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -jar build/libs/dropwizard-rest-api*.jar server heroku-config.yml
