@@ -15,9 +15,7 @@ configurations {
     }
 }
 
- apply plugin: 'fatjar'
-
- buildscript {
+buildscript {
 	repositories {
 	    mavenCentral()   
 	}
@@ -25,6 +23,7 @@ configurations {
 	  classpath 'eu.appsatori:gradle-fatjar-plugin:0.1.3'
 	}
  }
+ apply plugin: 'fatjar'
 
 repositories {
     mavenCentral()   
