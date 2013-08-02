@@ -67,4 +67,4 @@ task integrationTest(type:Test, dependsOn:test) {
 	classpath = sourceSets.integrationTest.runtimeClasspath
 }
 
-task stage(dependsOn: ['clean','installApp'])
+task stage(dependsOn: ['clean','jar','installApp'])
