@@ -17,5 +17,4 @@ public class BasicRestApiConfig extends Configuration {
 	public DatabaseConfiguration getDatabase() {
 		return this.database;
 	}
-
 }

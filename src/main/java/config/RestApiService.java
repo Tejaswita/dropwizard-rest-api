@@ -27,6 +27,7 @@ public class RestApiService extends Service<BasicRestApiConfig> {
 				BasicRestApiConfig configuration) {
 			return configuration.getDatabase();
 		}
+
 	};
 
 	@Override
