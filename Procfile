@@ -1,1 +1,1 @@
-web : ./build/install/dropwizard-rest-api/bin
+web : ./build/install/dropwizard-rest-api/bin/dropwiard-rest-api server heroku-config.yml
