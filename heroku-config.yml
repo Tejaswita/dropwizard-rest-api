@@ -32,5 +32,5 @@ database:
   closeConnectionIfIdleFor: 1 minute
   
 http:
-  port: $PORT
-  adminPort: $PORT 
+  port: PORT
+  adminPort: PORT 
