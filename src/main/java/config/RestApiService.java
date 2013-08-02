@@ -32,7 +32,7 @@ public class RestApiService extends Service<BasicRestApiConfig> {
 
 	@Override
 	public void initialize(Bootstrap<BasicRestApiConfig> bootstrap) {
-		bootstrap.setName("basic-rest-api");
+		bootstrap.setName("dropwizard-rest-api");
 		bootstrap.addBundle(hibernate);
 	}
 

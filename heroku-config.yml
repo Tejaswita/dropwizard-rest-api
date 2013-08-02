@@ -32,5 +32,5 @@ database:
   closeConnectionIfIdleFor: 1 minute
   
 http:
-  port: 8090
-  adminPort: 8090 
+  port: !!int 8090
+  adminPort: !!int 8090 
