@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'groovy'
  
-sourceCompatibility = 1.7
+sourceCompatibility = 1.6
 version = '1.0-SNAPSHOT'
 
 configurations {
@@ -83,4 +83,4 @@ task integrationTest(type:Test, dependsOn:test) {
 //   gradleVersion = '1.1'
 //}
 
-task stage(dependsOn: ['clean','integrationTest', 'fatJar'])
+task stage(dependsOn: ['clean','installApp'])
