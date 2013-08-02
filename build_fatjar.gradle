@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
+apply plugin: 'groovy'
  
 sourceCompatibility = 1.6
 version = '1.0-SNAPSHOT'
@@ -14,6 +15,15 @@ configurations {
     }
 }
 
+buildscript {
+	repositories {
+	    mavenCentral()   
+	}
+	dependencies {
+	  classpath 'eu.appsatori:gradle-fatjar-plugin:0.1.3'
+	}
+ }
+ apply plugin: 'fatjar'
 
 repositories {
     mavenCentral()   
@@ -44,6 +54,14 @@ dependencies {
 
 mainClassName='config.RestApiService'
 
+fatJar {
+	archiveName = 'dropwizard-rest-api.jar'
+	manifest {
+		attributes 'Main-Class' : mainClassName 
+	}
+	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+}
+
 run {
 	args 'server', 'dev-config.yml'
 }
@@ -60,5 +78,9 @@ task integrationTest(type:Test, dependsOn:test) {
 	testClassesDir = sourceSets.integrationTest.output.classesDir
 	classpath = sourceSets.integrationTest.runtimeClasspath
 }
+
+//task wrapper(type: Wrapper) {
+//   gradleVersion = '1.1'
+//}
 
 task stage(dependsOn: ['clean','installApp'])
