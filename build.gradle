@@ -15,16 +15,16 @@ configurations {
     }
 }
 
-apply plugin: 'fatjar'
+// apply plugin: 'fatjar'
 
-buildscript {
-	repositories {
-	    mavenCentral()   
-	}
-	dependencies {
-	  classpath 'eu.appsatori:gradle-fatjar-plugin:0.1.3'
-	}
-}
+// buildscript {
+//	repositories {
+//	    mavenCentral()   
+//	}
+//	dependencies {
+//	  classpath 'eu.appsatori:gradle-fatjar-plugin:0.1.3'
+//	}
+// }
 
 repositories {
     mavenCentral()   
@@ -55,13 +55,13 @@ dependencies {
 
 mainClassName='config.RestApiService'
 
-fatJar {
-	archiveName = 'dropwizard-rest-api.jar'
-	manifest {
-		attributes 'Main-Class' : mainClassName 
-	}
-	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
-}
+//fatJar {
+//	archiveName = 'dropwizard-rest-api.jar'
+//	manifest {
+//		attributes 'Main-Class' : mainClassName 
+//	}
+//	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+//}
 
 run {
 	args 'server', 'dev-config.yml'
