@@ -47,6 +47,13 @@ run {
 	args 'server', 'dev-config.yml'
 }
 
+jar {
+	classifier = 'fat'
+	manifest {
+		attributes 'Main-Class' : mainClassName
+	}
+	exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+}
 sourceSets{
 	integrationTest {
 		java.srcDir file('src/integration-test/java')
