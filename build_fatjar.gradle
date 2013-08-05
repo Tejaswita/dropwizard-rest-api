@@ -79,8 +79,8 @@ task integrationTest(type:Test, dependsOn:test) {
 	classpath = sourceSets.integrationTest.runtimeClasspath
 }
 
-//task wrapper(type: Wrapper) {
-//   gradleVersion = '1.1'
-//}
+task wrapper(type: Wrapper) {
+   gradleVersion = '1.1'
+}
 
 task stage(dependsOn: ['clean','installApp'])

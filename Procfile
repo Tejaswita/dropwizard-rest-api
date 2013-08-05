@@ -1,1 +1,1 @@
-web: ./build/install/dropwizard-rest-api/bin/dropwizard-rest-api server heroku-config.yml -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT 
+web: ./build/install/dropwizard-rest-api/bin/dropwizard-rest-api  -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT  server heroku-config.yml
