@@ -1,8 +1,8 @@
 database:
   driverClass: org.postgresql.Driver
-  user: <%= ENV['HEROKU_DATABASE_USER'] %>
-  password: <%= ENV['$HEROKU_DATABASE_PASSWORD] %>
-  url: jdbc:postgresql://<%= ENV['$HEROKU_DATABASE_HOST %>:<%= ENV['$HEROKU_DATABASE_PORT %>/<%= ENV['$HEROKU_DATABASE_NAME%>
+  user: <%= ENV[HEROKU_DATABASE_USER] %>
+  password: <%= ENV[HEROKU_DATABASE_PASSWORD] %>
+  url: jdbc:postgresql://<%= ENV[HEROKU_DATABASE_HOST] %>:<%= ENV[HEROKU_DATABASE_PORT] %>/<%= ENV[HEROKU_DATABASE_NAME] %>
   validationQuery: "/* My Example Service Service Health Check */ SELECT 1"
 
   # any properties specific to your JDBC driver:
