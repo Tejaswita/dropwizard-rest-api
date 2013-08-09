@@ -20,6 +20,7 @@ Its connects to Postgresql available as a Heroku add-on.
 **REST API**
 
 1. NameResource - takes the path parameter from the GET request and returns the same.
+
 GET /display/somevaluetodisplay
 HTTP/1.1
 Host: localhost:8080
