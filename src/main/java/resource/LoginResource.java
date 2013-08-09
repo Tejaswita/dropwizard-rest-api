@@ -15,7 +15,7 @@ import service.AuthenticationService;
 
 import com.yammer.dropwizard.hibernate.UnitOfWork;
 
-import domain.dto.AuthenticatedUser;
+import dto.AuthenticatedUser;
 import exception.InvalidCredentialsException;
 
 @Path(value = "/login")

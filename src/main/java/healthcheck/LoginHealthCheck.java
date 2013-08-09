@@ -6,7 +6,7 @@ import resource.LoginResource;
 
 import com.yammer.metrics.core.HealthCheck;
 
-import domain.dto.AuthenticatedUser;
+import dto.AuthenticatedUser;
 
 public class LoginHealthCheck extends HealthCheck {
 

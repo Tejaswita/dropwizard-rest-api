@@ -2,13 +2,14 @@ package dao;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
+import model.Identity;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 import com.yammer.dropwizard.hibernate.AbstractDAO;
 
-import domain.Identity;
 import exception.InvalidCredentialsException;
 
 public class IdentityDao extends AbstractDAO<Identity> {

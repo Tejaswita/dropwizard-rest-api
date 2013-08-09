@@ -12,6 +12,8 @@ import java.util.List;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
+import model.Identity;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +27,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import domain.Identity;
 import exception.InvalidCredentialsException;
 
 @RunWith(MockitoJUnitRunner.class)

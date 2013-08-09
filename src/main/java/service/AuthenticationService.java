@@ -1,9 +1,9 @@
 package service;
 
+import model.Identity;
 import javassist.tools.rmi.ObjectNotFoundException;
 import dao.IdentityDao;
-import domain.Identity;
-import domain.dto.AuthenticatedUser;
+import dto.AuthenticatedUser;
 import exception.InvalidCredentialsException;
 
 public class AuthenticationService {

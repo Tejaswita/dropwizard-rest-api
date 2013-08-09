@@ -8,6 +8,9 @@ import static org.mockito.BDDMockito.given;
 
 import static org.mockito.Mockito.verify;
 
+import model.Identity;
+import model.Role;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,9 +18,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import dao.IdentityDao;
-import domain.Identity;
-import domain.Role;
-import domain.dto.AuthenticatedUser;
+import dto.AuthenticatedUser;
 import exception.InvalidCredentialsException;
 
 @RunWith(MockitoJUnitRunner.class)

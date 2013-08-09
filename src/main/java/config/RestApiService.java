@@ -1,5 +1,6 @@
 package config;
 
+import model.Identity;
 import healthcheck.LoginHealthCheck;
 import resource.LoginResource;
 import resource.NameResource;
@@ -12,7 +13,6 @@ import com.yammer.dropwizard.db.DatabaseConfiguration;
 import com.yammer.dropwizard.hibernate.HibernateBundle;
 
 import dao.IdentityDao;
-import domain.Identity;
 
 public class RestApiService extends Service<BasicRestApiConfig> {
 

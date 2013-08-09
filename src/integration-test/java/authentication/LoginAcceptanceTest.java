@@ -7,6 +7,8 @@ import static org.hamcrest.Matchers.is;
 
 import static org.mockito.BDDMockito.given;
 
+import model.Role;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -19,8 +21,7 @@ import com.sun.jersey.api.representation.Form;
 import com.sun.jersey.server.impl.template.ViewableMessageBodyWriter;
 import com.yammer.dropwizard.testing.ResourceTest;
 
-import domain.Role;
-import domain.dto.AuthenticatedUser;
+import dto.AuthenticatedUser;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoginAcceptanceTest extends ResourceTest {

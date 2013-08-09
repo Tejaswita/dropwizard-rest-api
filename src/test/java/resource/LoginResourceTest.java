@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import service.AuthenticationService;
-import domain.dto.AuthenticatedUser;
+import dto.AuthenticatedUser;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoginResourceTest {

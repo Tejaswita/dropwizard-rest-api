@@ -1,10 +1,10 @@
-package domain;
+package model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import domain.dto.AuthenticatedUser;
+import dto.AuthenticatedUser;
 
 @Entity
 @Table(name = "identity")

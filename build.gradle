@@ -64,8 +64,8 @@ sourceSets{
 }
 startScripts {
     doLast {
-        unixScript.text = unixScript.text.replace('DEFAULT_JVM_OPTS=""', 'DEFAULT_JVM_OPTS="-Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT"')
-        windowsScript.text = windowsScript.text.replace('DEFAULT_JVM_OPTS=', '-Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT')
+        unixScript.text = unixScript.text.replace('DEFAULT_JVM_OPTS=""', 'DEFAULT_JVM_OPTS="-Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -Ddw.database.password=$DATABASE_PASSWORD -Ddw.database.user=$DATABASE_USERNAME"')
+        windowsScript.text = windowsScript.text.replace('DEFAULT_JVM_OPTS=', 'DEFAULT_JVM_OPTS="-Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -Ddw.database.password=$DATABASE_PASSWORD -Ddw.database.user=$DATABASE_USERNAME"')
     }
 }
 
@@ -74,4 +74,4 @@ task integrationTest(type:Test, dependsOn:test) {
 	classpath = sourceSets.integrationTest.runtimeClasspath
 }
 
-task stage(dependsOn: ['clean','jar','installApp'])
+task stage(dependsOn: ['clean', 'installApp'])
