@@ -12,3 +12,7 @@
 .gradle
 .idea
 
+
+dropwizard-rest-api.ipr
+dropwizard-rest-api.iml
+dropwizard-rest-api.iws
