@@ -27,7 +27,7 @@ Host: localhost:8080
 Content-Type: text/plain
 Cache-Control: no-cache
 
-2. LoginResource - accepts POST request with username and password, searches postgresql db and returns authenticated user object as response.
+2. resource.ColorCodeResourceTest - accepts POST request with username and password, searches postgresql db and returns authenticated user object as response.
    
 POST /login 
 HTTP/1.1
