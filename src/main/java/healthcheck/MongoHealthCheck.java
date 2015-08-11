@@ -2,9 +2,6 @@ package healthcheck;
 
 import com.codahale.metrics.health.HealthCheck;
 import com.mongodb.MongoClient;
-import com.mongodb.client.MongoIterable;
-import com.mongodb.util.JSON;
-import org.apache.commons.lang3.StringUtils;
 
 public class MongoHealthCheck extends HealthCheck {
 
