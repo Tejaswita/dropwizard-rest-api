@@ -34,7 +34,7 @@ public class ColorCodeResource {
     @Path("/add")
     public Response add(Color color) {
         String colorId = colorDao.add(color);
-        URI location = URI.create("colorId");
+        URI location = URI.create(colorId);
         return Response.created(location).build();
     }
 }

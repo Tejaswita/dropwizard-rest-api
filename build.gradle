@@ -50,7 +50,7 @@ dependencies {
     testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.48.2"
 }
 
-mainClassName = "main.MongodbExampleApplication"
+mainClassName = "main.RestApiMain"
 
 
 run {

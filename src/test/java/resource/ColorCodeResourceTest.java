@@ -36,10 +36,10 @@ public class ColorCodeResourceTest {
     public void itShouldReturnRgbCodeForColor(){
         String color = "white";
         String colorCode = "#ffffff";
+        given(colorDao.getCode(color)).willReturn(colorCode);
 
         Response rgbCode = colorCodeResource.get(color);
 
-        given(colorDao.getCode(color)).willReturn(colorCode);
 
         assertThat((String)rgbCode.getEntity(), is(colorCode));
         assertThat(rgbCode.getStatus(), is(OK.getStatusCode()));
@@ -48,9 +48,13 @@ public class ColorCodeResourceTest {
 
     @Test
     public void itShouldReturnNotFoundResponseIfNoMatchingCode() {
-        Response rgbCode = colorCodeResource.get("red");
+        String color = "red";
+        String colorCode = "#ffffff";
 
-        Entity code = Entity.entity("#ffffff", MediaType.APPLICATION_JSON_TYPE);
+        given(colorDao.getCode(color)).willReturn(colorCode);
+        Response rgbCode = colorCodeResource.get(color);
+
+        Entity code = Entity.entity(colorCode, MediaType.APPLICATION_JSON_TYPE);
         assertThat((String)rgbCode.getEntity(), is(code.getEntity()));
         assertThat(rgbCode.getStatus(), is(OK.getStatusCode()));
     }
