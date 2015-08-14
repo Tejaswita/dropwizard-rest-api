@@ -5,6 +5,8 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.dao.BasicDAO;
 
+import java.util.Optional;
+
 public class ColorDao extends BasicDAO<Color, ObjectId> {
 
     private Datastore datastore;
@@ -21,8 +23,11 @@ public class ColorDao extends BasicDAO<Color, ObjectId> {
         return color.getColor();
     }
 
-    public Color getColor(String color) {
+    public Optional<Color> getColor(String color) {
         Color dbColor = datastore.createQuery(Color.class).filter("color", color).get();
-        return dbColor;
+        if(dbColor == null) {
+            return Optional.empty();
+        }
+        return Optional.of(dbColor);
     }
 }

@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
+import java.util.Optional;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -43,7 +45,7 @@ public class ColorDaoTest  extends WithMongoServer{
 
         ColorDao dao = new ColorDao(datastore);
 
-        Color color = dao.getColor("red");
+        Color color = dao.getColor("red").get();
 
         assertThat(color.getColor(), is("red"));
         assertThat(color.getCode(), is("#ff0000"));

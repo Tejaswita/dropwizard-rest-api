@@ -23,7 +23,7 @@ public class ColorCodeResource {
     @GET
     @Path("/{color}")
     public Response get(@PathParam("color") String rgbColor){
-        if(!colorDao.getColor(rgbColor).equals(Optional.empty())) {
+        if(colorDao.getColor(rgbColor).isPresent()) {
             return Response.ok().entity("#ffffff").build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
