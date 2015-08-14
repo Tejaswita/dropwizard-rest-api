@@ -1,36 +1,35 @@
 package dao;
 
-import de.flapdoodle.embed.mongo.MongodExecutable;
-import de.flapdoodle.embed.mongo.MongodStarter;
-import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
-import de.flapdoodle.embed.mongo.config.Net;
-import de.flapdoodle.embed.mongo.distribution.Version;
-import de.flapdoodle.embed.process.runtime.Network;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import com.mongodb.MongoClient;
+import com.mongodb.ServerAddress;
+import de.bwaldvogel.mongo.MongoServer;
+import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
+import org.junit.After;
+import org.junit.Before;
 
-import java.io.IOException;
+import java.net.InetSocketAddress;
 
 /**
  * Created by Tejaswita on 11-08-2015.
  */
 public class WithMongoServer {
-    private static MongodExecutable mongodExecutable;
-    protected static int PORT = 12233;
+    protected MongoServer server;
+    protected MongoClient client;
 
-    @BeforeClass
-    public static void setup() throws IOException {
-        MongodStarter mongodStarter = MongodStarter.getDefaultInstance();
-        mongodExecutable = mongodStarter.prepare(new MongodConfigBuilder()
-                .version(Version.Main.PRODUCTION)
-                .net(new Net(PORT, Network.localhostIsIPv6()))
-                .build());
-        mongodExecutable.start();
+    @Before
+    public void setUp() {
+        server = new MongoServer(new MemoryBackend());
 
+        // bind on a random local port
+        InetSocketAddress serverAddress = server.bind();
+
+        client = new MongoClient(new ServerAddress(serverAddress));
     }
 
-    @AfterClass
-    public static void tearDown(){
-        mongodExecutable.stop();
+    @After
+    public void tearDown() {
+        client.close();
+        server.shutdownNow();
     }
+
 }

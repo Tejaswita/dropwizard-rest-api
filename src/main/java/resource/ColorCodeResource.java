@@ -1,6 +1,5 @@
 package resource;
 
-import com.google.common.base.Optional;
 import dao.ColorDao;
 import model.Color;
 
@@ -8,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.util.Optional;
 
 @Path("/color")
 @Produces(MediaType.APPLICATION_JSON)
@@ -23,7 +23,7 @@ public class ColorCodeResource {
     @GET
     @Path("/{color}")
     public Response get(@PathParam("color") String rgbColor){
-        if(!colorDao.getCode(rgbColor).isEmpty()) {
+        if(!colorDao.getColor(rgbColor).equals(Optional.empty())) {
             return Response.ok().entity("#ffffff").build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -34,7 +34,7 @@ public class ColorCodeResource {
     @Path("/add")
     public Response add(Color color) {
         String colorId = colorDao.add(color);
-        URI location = URI.create(colorId);
+        URI location = URI.create("color/"+colorId);
         return Response.created(location).build();
     }
 }

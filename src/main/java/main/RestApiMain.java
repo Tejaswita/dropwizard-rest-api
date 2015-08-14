@@ -39,9 +39,8 @@ public class RestApiMain extends Application<BasicRestApiConfig>{
         environment.jersey().register(basicAuthFactory);
         environment.jersey().register(userDao);
 
-        ColorCodeResource colorCodeResource = new ColorCodeResource(new ColorDao());
+        ColorCodeResource colorCodeResource = new ColorCodeResource(new ColorDao(datastore));
         environment.jersey().register(colorCodeResource);
-
 
         Map<String, Object> properties = new HashMap<>();
         properties.put(ServerProperties.WADL_FEATURE_DISABLE, false);

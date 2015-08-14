@@ -1,6 +1,7 @@
 package dao;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodStarter;
 import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
@@ -8,6 +9,7 @@ import de.flapdoodle.embed.mongo.config.Net;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
 import model.User;
+import org.bson.Document;
 import org.junit.*;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -23,17 +25,14 @@ import static org.hamcrest.Matchers.samePropertyValuesAs;
 public class UserDaoTest extends WithMongoServer {
 
     private Datastore datastore;
-    private MongoClient mongoClient;
+    private MongoCollection<Document> collection;
 
     @Before
     public void initialiseMongo() {
-        mongoClient = new MongoClient("localhost", PORT);
-        datastore = new Morphia().createDatastore(mongoClient, "test_db");
-    }
 
-    @After
-    public void stopMongo(){
-        mongoClient.close();
+        collection = client.getDatabase("testdb").getCollection("color");
+
+        datastore = new Morphia().createDatastore(client, "test_db");
     }
 
     @Test

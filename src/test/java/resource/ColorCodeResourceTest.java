@@ -8,8 +8,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.Response.Status.CREATED;
@@ -18,7 +16,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ColorCodeResourceTest {
@@ -34,34 +31,33 @@ public class ColorCodeResourceTest {
 
     @Test
     public void itShouldReturnRgbCodeForColor(){
-        String color = "white";
-        String colorCode = "#ffffff";
-        given(colorDao.getCode(color)).willReturn(colorCode);
+        Color white = new Color("white", "#ffffff");
+        given(colorDao.getColor("white")).willReturn(white);
 
-        Response rgbCode = colorCodeResource.get(color);
+        Response rgbCode = colorCodeResource.get("white");
 
 
-        assertThat((String)rgbCode.getEntity(), is(colorCode));
+        assertThat((String)rgbCode.getEntity(), is("#ffffff"));
         assertThat(rgbCode.getStatus(), is(OK.getStatusCode()));
-        verify(colorDao).getCode(color);
+        verify(colorDao).getColor("white");
     }
 
     @Test
     public void itShouldReturnNotFoundResponseIfNoMatchingCode() {
-        String color = "red";
-        String colorCode = "#ffffff";
+        Color white = new Color("white", "#ffffff");
 
-        given(colorDao.getCode(color)).willReturn(colorCode);
-        Response rgbCode = colorCodeResource.get(color);
+        given(colorDao.getColor("white")).willReturn(white);
+        Response rgbCode = colorCodeResource.get("white");
 
-        Entity code = Entity.entity(colorCode, MediaType.APPLICATION_JSON_TYPE);
-        assertThat((String)rgbCode.getEntity(), is(code.getEntity()));
+        assertThat((String)rgbCode.getEntity(), is("#ffffff"));
         assertThat(rgbCode.getStatus(), is(OK.getStatusCode()));
     }
 
     @Test
     public void itShouldAddColorCodes(){
         Color color = new Color("white","#ffffff");
+        given(colorDao.add(color)).willReturn("white");
+
         Response response = colorCodeResource.add(color);
 
         assertThat(response.getStatus(), is(CREATED.getStatusCode()));
