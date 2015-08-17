@@ -1,5 +1,6 @@
 package model;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -8,10 +9,12 @@ import java.util.Objects;
 @Entity(value = "color")
 public class Color {
     @Id
+    private ObjectId id = new ObjectId();
     private  String color;
     private  String code;
 
     public Color() {
+
     }
 
     public Color(String color, String code) {
