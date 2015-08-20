@@ -3,14 +3,21 @@ package dao;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import model.Color;
+import org.bson.BSON;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.conversions.Bson;
 import org.junit.Before;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
+import javax.xml.parsers.DocumentBuilder;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -21,8 +28,7 @@ public class ColorDaoTest  extends WithMongoServer{
 
     @Before
     public void setup() {
-
-        collection = client.getDatabase("testdb").getCollection("color");
+        collection = client.getDatabase("test_db").getCollection("color");
 
         datastore = new Morphia().createDatastore(client, "test_db");
     }
@@ -34,9 +40,24 @@ public class ColorDaoTest  extends WithMongoServer{
 
         dao.add(redColor);
 
-        FindIterable<Color> colors = collection.find(Color.class);
-        assertThat(colors.first().getColor(), is(redColor));
+        Bson filter = BsonDocument.parse("{'color':'red'}");
+        Document color = collection.find(filter).first();
+        assertThat(color, hasEntry("color","red"));
+        assertThat(color, hasEntry("code","#ff0000"));
 
+    }
+
+    @Test
+    public void itShouldReturnCode(){
+        collection.insertOne(new Document("color","red").append("code","#ff0000"));
+        collection.insertOne(new Document("color","white").append("code","#ffffff"));
+        ColorDao dao = new ColorDao(datastore);
+
+        Optional<Color> color = dao.getColor("white");
+        assertThat(color.get().getCode(), is("#ffffff"));
+
+        Optional<Color> red = dao.getColor("red");
+        assertThat(red.get().getCode(), is("#ff0000"));
     }
 
     @Test
@@ -45,11 +66,9 @@ public class ColorDaoTest  extends WithMongoServer{
 
         ColorDao dao = new ColorDao(datastore);
 
-        Color color = dao.getColor("red").get();
+        Optional<Color> color = dao.getColor("white");
 
-        assertThat(color.getColor(), is("red"));
-        assertThat(color.getCode(), is("#ff0000"));
-
+        assertThat(color, is(Optional.empty()));
     }
 
 }

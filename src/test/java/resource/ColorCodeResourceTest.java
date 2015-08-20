@@ -8,7 +8,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import javax.swing.text.html.Option;
 import javax.ws.rs.core.Response;
+
+import java.util.Optional;
 
 import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.OK;
@@ -32,7 +35,7 @@ public class ColorCodeResourceTest {
     @Test
     public void itShouldReturnRgbCodeForColor(){
         Color white = new Color("white", "#ffffff");
-        given(colorDao.getColor("white")).willReturn(white);
+        given(colorDao.getColor("white")).willReturn(Optional.of(white));
 
         Response rgbCode = colorCodeResource.get("white");
 
@@ -46,7 +49,7 @@ public class ColorCodeResourceTest {
     public void itShouldReturnNotFoundResponseIfNoMatchingCode() {
         Color white = new Color("white", "#ffffff");
 
-        given(colorDao.getColor("white")).willReturn(white);
+        given(colorDao.getColor("white")).willReturn(Optional.of(white));
         Response rgbCode = colorCodeResource.get("white");
 
         assertThat((String)rgbCode.getEntity(), is("#ffffff"));
